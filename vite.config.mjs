@@ -1,11 +1,13 @@
 import vinext from "vinext";
 import { defineConfig } from "vite";
+import { nitro } from "nitro/vite";
 import hostingConfig from "./.openai/hosting.json" with { type: "json" };
 import { sites } from "./build/sites-vite-plugin";
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID = "00000000-0000-4000-8000-000000000000";
 const { d1, r2 } = hostingConfig;
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
+const isVercel = process.env.VERCEL === "1";
 const localBindingConfig = {
   main: "vinext/server/fetch-handler",
   compatibility_flags: ["nodejs_compat"],
@@ -14,6 +16,12 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  if (isVercel) {
+    return {
+      plugins: [vinext(), ...nitro({ preset: "vercel" })],
+    };
+  }
+
   process.env.CLOUDFLARE_CF_FETCH_ENABLED ??= "false";
   process.env.WRANGLER_SEND_METRICS ??= "false";
   process.env.WRANGLER_WRITE_LOGS ??= "false";
