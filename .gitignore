@@ -1,0 +1,86 @@
+# Dependencies
+/node_modules/
+/.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Build output and local caches
+/.next/
+/out/
+/dist/
+/.vinext/
+/.wrangler/
+/.sites-runtime/
+/.site-stage/
+/output/
+/outputs/
+/coverage/
+
+# Local tools and review artifacts
+/.playwright-cli/
+/.briefing-review/
+/.agents/
+/.codex/
+/work/
+
+# Site metadata: hosting.json is required by vite.config.mjs
+/.openai/*
+!/.openai/hosting.json
+
+# Archives and temporary exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+*.token
+*.secret
+credentials/
+secrets/
+credentials.json
+service-account*.json
+firebase-adminsdk*.json
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Debug logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Vercel
+/.vercel/
+
+# Generated TypeScript declaration
+/next-env.d.ts
