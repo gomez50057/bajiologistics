@@ -2,7 +2,6 @@
 
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -66,6 +65,13 @@ const serviceEquivalents = {
   "soluciones-personalizadas": "tailored-solutions",
   "tailored-solutions": "soluciones-personalizadas",
 };
+
+// Vinext's client-side Link navigation currently fails in the Vercel/Nitro
+// bundle. Native anchors keep every internal route available with a full page
+// navigation and preserve the existing classes, labels, and click handlers.
+function Link({ href, children, ...props }) {
+  return <a href={href} {...props}>{children}</a>;
+}
 
 const footerRoutes = {
   es: { Nosotros: "/es/nosotros", Historia: "/es/nosotros", Cobertura: "/es/cobertura", Clientes: "/es/clientes", Transporte: "/es/servicios", Planeación: "/es/servicios", Seguimiento: "/es/servicios", Optimización: "/es/servicios", Consultoría: "/es/servicios", Cotización: "/es/cotizar", Contacto: "/es/contacto", "Trabaja con nosotros": "/es/proveedores", Requisitos: "/es/proveedores", Registro: "/es/proveedores/registro" },
